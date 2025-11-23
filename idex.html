@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>문의하기</title>
+</head>
+<body>
+    <h2>문의하기</h2>
+
+    <form id="contact-form">
+        <input type="text" name="user_name" placeholder="이름" required><br><br>
+        <textarea name="message" placeholder="메시지를 입력하세요" required></textarea><br><br>
+
+        <button type="submit">전송</button>
+    </form>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js">
+    </script>
+
+    <script>
+        (function(){
+            emailjs.init("Oi8GC1ooaV1I3nnlk");
+        })();
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            emailjs.sendForm('service_y7o76ti', 'template_mevt515', this)
+                .then(function() {
+                    alert('전송 완료!');
+                }, function(error) {
+                    alert('전송 실패:', error);
+                });
+        });
+    </script>
+
+</body>
+</html>
